@@ -48,7 +48,7 @@ open class Login : AppCompatActivity() {
                 bindingLogin.etPasswordSignUp.setError("Enter your password, Please!!!");
             }
 
-            loginViewModel.getLoginDetails(context,email)!!.observe(this, Observer {
+            loginViewModel.getLoginDetails(context,email,password)!!.observe(this, Observer {
                 if (it == null ){
                     Toast.makeText(this, "Not found", Toast.LENGTH_LONG).show()
                 }

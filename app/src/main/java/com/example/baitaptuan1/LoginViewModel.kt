@@ -15,8 +15,8 @@ class LoginViewModel : ViewModel() {
         LoginRepository.insertData(context, email, password)
     }
 
-    fun getLoginDetails(context: Context, email: String) : LiveData<LoginTableModel>? {
-        liveDataLogin = LoginRepository.getLoginDetails(context, email)
+    fun getLoginDetails(context: Context, email: String, password: String) : LiveData<LoginTableModel>? {
+        liveDataLogin = LoginRepository.getLoginDetails(context, email,password)
         return liveDataLogin
     }
 }

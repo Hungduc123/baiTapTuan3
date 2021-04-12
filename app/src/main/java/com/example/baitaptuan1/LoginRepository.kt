@@ -2,18 +2,11 @@ package com.example.baitaptuan1
 
 import android.content.Context
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Dispatchers.IO
-import kotlinx.coroutines.Dispatchers.Main
 
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
-import com.example.baitaptuan1.LoginViewModel
-import com.example.baitaptuan1.LoginTableModel
-import com.example.baitaptuan1.LoginDatabase
 //repository
 class LoginRepository {
     companion object {
@@ -37,11 +30,11 @@ class LoginRepository {
 
         }
 
-        fun getLoginDetails(context: Context, email: String) : LiveData<LoginTableModel>? {
+        fun getLoginDetails(context: Context, email: String, password: String) : LiveData<LoginTableModel>? {
 
             loginDatabase = initializeDB(context)
 
-            loginTableModel = loginDatabase!!.loginDao().getLoginDetails(email)
+            loginTableModel = loginDatabase!!.loginDao().getLoginDetails(email,password)
 
             return loginTableModel
         }
