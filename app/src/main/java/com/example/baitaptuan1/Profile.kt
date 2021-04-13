@@ -11,18 +11,20 @@ import android.view.LayoutInflater
 import android.widget.*
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.example.baitaptuan1.databinding.ActivityProfileBinding
 import kotlinx.android.synthetic.main.activity_profile.*
 import kotlinx.android.synthetic.main.customdialog.view.*
 
 
 class Profile : Login() {
-private  lateinit var  binding: ActivityProfileBinding
-
+    private  lateinit var  binding: ActivityProfileBinding
+    private  lateinit var  viewModel: ProfileViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
         binding=DataBindingUtil.setContentView(this,R.layout.activity_profile)
+        viewModel=ViewModelProvider(this).get(ProfileViewModel::class.java)
 
         val bundle=intent.extras
         bundle?.let {
@@ -30,11 +32,25 @@ private  lateinit var  binding: ActivityProfileBinding
             val fullNameOrgi=bundle.getString("fullName","unknow")
             val passwordOrgi=bundle.getString("passWord","unknow")
 
+            if(viewModel.account.email.equals("default")){
+            viewModel.account.fullName=fullNameOrgi
+            viewModel.account.email=emailOrgi
+            viewModel.account.password=passwordOrgi
+}
+
+
+//            txtName.setText( viewModel.account.fullName)
+//            tvcontentfullname.setText( viewModel.account.fullName)
+//            tvcontentemail.setText( viewModel.account.email)
+//            tvContentPhoneNumber.setText("")
+
+            binding.account= viewModel.account
+
 
 
             loginViewModel.getLoginDetails(context,emailOrgi,passwordOrgi)!!.observe(this, Observer {
 
-                binding.account= Account(it.Email,it.FullName,it.Password)
+           //    binding.account= Account(it.Email,it.FullName,it.Password,"")
 
 
             })
@@ -55,24 +71,21 @@ private  lateinit var  binding: ActivityProfileBinding
                     //get text from EditTexts of custom layout
                     val name = mDialogView.dialogNameEt.text.toString()
                     val email = mDialogView.dialogEmailEt.text.toString()
-                    val password = mDialogView.dialogPasswEt.text.toString()
+                    val numberPhone = mDialogView.dialogPasswEt.text.toString()
 //------------------------------
                     loginViewModel.getLoginDetails(context,emailOrgi,passwordOrgi)!!.observe(this, Observer {
                        it.Email=email
                        it.FullName=name
 
+
+                        viewModel.account.fullName=name
+                        viewModel.account.email=email
+                        viewModel.account.password=passwordOrgi
+                        viewModel.account.numberPhone=numberPhone
+                        binding.invalidateAll()
+                        binding.account=viewModel.account
                     })
 
-
-
-                    //--------------------------
-                    //set the input text in TextView
-                    //   mainInfoTv.setText("Name:"+ name +"\nEmail: "+ email +"\nPassword: "+ password)
-                    txtName.setText(name)
-                    tvcontentfullname.setText(name)
-                    tvcontentemail.setText(email)
-                    tvContentPhoneNumber.setText(password)
-                //    binding.invalidateAll()
 
                 }
                 //cancel button click of custom layout
