@@ -19,18 +19,20 @@ import kotlinx.android.synthetic.main.activity_sign_up.*
 import com.example.baitaptuan1.LoginViewModel
 import com.example.baitaptuan1.LoginTableModel
 import com.example.baitaptuan1.SignUp
+import com.example.baitaptuan1.databinding.ActivityProfileBinding
+import kotlinx.android.synthetic.main.activity_profile.*
 
 
 open class Login : AppCompatActivity() {
+//    private  lateinit var  binding: ActivityProfileBinding
     lateinit var loginViewModel: LoginViewModel
     lateinit var context: Context
     private lateinit var bindingLogin : ActivityLoginBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-//        val edEmailLogin = findViewById<EditText>(R.id.edEmailLogin)
-//        val etPasswordLogin = findViewById<EditText>(R.id.etPasswordLogin)
-//        val btLogin = findViewById<ImageButton>(R.id.btLogin)
+
+  //      binding=DataBindingUtil.setContentView(this,R.layout.activity_profile)
 
         bindingLogin = DataBindingUtil.setContentView(this,R.layout.activity_login)
         loginViewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
@@ -54,11 +56,23 @@ open class Login : AppCompatActivity() {
                 }
                 else {
                     Toast.makeText(this, "Login complete", Toast.LENGTH_LONG).show()
+                    val bundle=Bundle()
+                    bundle.putString("email", it.Email)
+                    bundle.putString("fullName", it.FullName)
+                    bundle.putString("passWord",it.Password)
                     val intent = Intent(this, Profile::class.java)
-                    intent.putExtra( "Email", email)
+                    intent.putExtras(bundle)
+              //     intent.putExtra( "Email", email)
                     startActivity(intent)
+
+
+
                 }
+
+
             })
+
+
 
 ///
 //            if (!isEmpty(email) && !isEmpty(password)) {

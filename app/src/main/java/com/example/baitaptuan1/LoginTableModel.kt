@@ -8,11 +8,15 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "Login")
 data class LoginTableModel (
 
-        @ColumnInfo(name = "email")
+    @ColumnInfo(name = "fullname")
+        var FullName: String,
+
+    @ColumnInfo(name = "email")
         var Email: String,
 
-        @ColumnInfo(name = "password")
+    @ColumnInfo(name = "password")
         var Password: String
+
 
 ) {
 

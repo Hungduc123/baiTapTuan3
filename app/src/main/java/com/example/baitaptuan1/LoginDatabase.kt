@@ -8,8 +8,10 @@ import com.example.baitaptuan1.LoginTableModel
 @Database(entities = arrayOf(LoginTableModel::class), version = 1, exportSchema = false)
 abstract class LoginDatabase : RoomDatabase() {
 
+
     abstract fun loginDao(): DAOAccess
     companion object {
+
         @Volatile
         private  var INSTANCE: LoginDatabase?= null
 
@@ -24,6 +26,9 @@ abstract class LoginDatabase : RoomDatabase() {
                 return INSTANCE!!
             }
         }
+
+
+
     }
 
 }

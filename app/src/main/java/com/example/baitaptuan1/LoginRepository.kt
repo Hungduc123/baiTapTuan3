@@ -19,12 +19,12 @@ class LoginRepository {
             return LoginDatabase.getDataseClient(context)
         }
 
-        fun insertData(context: Context, email: String, password: String) {
+        fun insertData(context: Context, email: String, password: String,fullname :String) {
 
             loginDatabase = initializeDB(context)
 
             CoroutineScope(Dispatchers.IO).launch {
-                val loginDetails = LoginTableModel(email, password)
+                val loginDetails = LoginTableModel(email, password,fullname)
                 loginDatabase!!.loginDao().InsertData(loginDetails)
             }
 
