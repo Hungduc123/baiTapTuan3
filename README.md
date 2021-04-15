@@ -1,3 +1,5 @@
+![baiTapTuan3](https://user-images.githubusercontent.com/75669379/114899498-3556b280-9e3d-11eb-968c-010955861d04.gif)
+
 THỬ THÁCH TUẦN 3
 
 YÊU CẦU: #
