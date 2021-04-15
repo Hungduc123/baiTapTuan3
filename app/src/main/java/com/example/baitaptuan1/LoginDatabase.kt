@@ -10,23 +10,23 @@ abstract class LoginDatabase : RoomDatabase() {
 
 
     abstract fun loginDao(): DAOAccess
+
     companion object {
 
         @Volatile
-        private  var INSTANCE: LoginDatabase?= null
+        private var INSTANCE: LoginDatabase? = null
 
-        fun getDataseClient(context: Context) : LoginDatabase{
+        fun getDataseClient(context: Context): LoginDatabase {
             if (INSTANCE != null) return INSTANCE!!
-            synchronized(this){
+            synchronized(this) {
                 INSTANCE = Room
-                    .databaseBuilder(context, LoginDatabase::class.java, "LOGIN_DATABASE")
-                    .fallbackToDestructiveMigration()
-                    .build()
+                        .databaseBuilder(context, LoginDatabase::class.java, "LOGIN_DATABASE")
+                        .fallbackToDestructiveMigration()
+                        .build()
 
                 return INSTANCE!!
             }
         }
-
 
 
     }

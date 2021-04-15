@@ -24,22 +24,20 @@ import kotlinx.android.synthetic.main.activity_profile.*
 
 
 open class Login : AppCompatActivity() {
-//    private  lateinit var  binding: ActivityProfileBinding
     lateinit var loginViewModel: LoginViewModel
     lateinit var context: Context
-    private lateinit var bindingLogin : ActivityLoginBinding
+    private lateinit var bindingLogin: ActivityLoginBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-  //      binding=DataBindingUtil.setContentView(this,R.layout.activity_profile)
 
-        bindingLogin = DataBindingUtil.setContentView(this,R.layout.activity_login)
+        bindingLogin = DataBindingUtil.setContentView(this, R.layout.activity_login)
         loginViewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
 
         context = this@Login
 
-        bindingLogin.btLogin.setOnClickListener{
+        bindingLogin.btLogin.setOnClickListener {
             var email: String = bindingLogin.etEmailignUp.text.toString()
             var password: String = bindingLogin.etPasswordSignUp.text.toString()
 
@@ -50,75 +48,35 @@ open class Login : AppCompatActivity() {
                 bindingLogin.etPasswordSignUp.setError("Enter your password, Please!!!");
             }
 
-            loginViewModel.getLoginDetails(context,email,password)!!.observe(this, Observer {
-                if (it == null ){
+            loginViewModel.getLoginDetails(context, email, password)!!.observe(this, Observer {
+                if (it == null) {
                     Toast.makeText(this, "Not found", Toast.LENGTH_LONG).show()
-                }
-                else {
+                } else {
                     Toast.makeText(this, "Login complete", Toast.LENGTH_LONG).show()
-                    val bundle=Bundle()
+                    val bundle = Bundle()
                     bundle.putString("email", it.Email)
                     bundle.putString("fullName", it.FullName)
-                    bundle.putString("passWord",it.Password)
+                    bundle.putString("passWord", it.Password)
                     val intent = Intent(this, Profile::class.java)
                     intent.putExtras(bundle)
-              //     intent.putExtra( "Email", email)
+                    //     intent.putExtra( "Email", email)
                     startActivity(intent)
 
 
-
                 }
-
 
             })
 
-
-
-///
-//            if (!isEmpty(email) && !isEmpty(password)) {
-//                if (email.equals("ronaldo@gmail.com") && password.equals("123456")) {
-//                    Toast.makeText(this, "Login complete", Toast.LENGTH_LONG).show()
-//                    val intent = Intent(this, Profile::class.java)
-////                intent.putExtra( "Email", email)
-//                    startActivity(intent)
-//                } else {
-//                    val mAlertDialog = AlertDialog.Builder(this)
-//                    mAlertDialog.setIcon(R.drawable.iconnotifi) //set alertdialog icon
-//                    mAlertDialog.setTitle("Notification!") //set alertdialog title
-//                    mAlertDialog.setMessage("Your email or password are wronged\n Enter again, please!") //set alertdialog message
-//                    mAlertDialog.setPositiveButton("Try again") { dialog, id ->
-//                        //perform some tasks here
-//                        //   Toast.makeText(this@MainActivity, "Yes", Toast.LENGTH_SHORT).show()
-//                        etEmailignUp.setText("")
-//                        etPasswordSignUp.setText("")
-//
-//
-//                    }
-//                    mAlertDialog.setNegativeButton("Don’t have an account?") { dialog, id ->
-//                        //perform som tasks here
-//                        //     Toast.makeText(this@MainActivity, "No", Toast.LENGTH_SHORT).show()
-//                        val intent = Intent(this, SignUp::class.java)
-//                        intent.putExtra("Email", email)
-//                        intent.putExtra("password", password)
-//
-//                        startActivity(intent)
-//
-//                    }
-//                    mAlertDialog.show()
-//                }
-//                //   Toast.makeText(this, "dang nhap that bai", Toast.LENGTH_LONG).show()
-//            }
-//        }
         }
-            bindingLogin.tvSignInSignUp.setOnClickListener {
+        bindingLogin.tvSignInSignUp.setOnClickListener {
 
-                val intent = Intent(this, SignUp::class.java)
-                startActivity(intent)
-            }
-            bindingLogin.backLogin.setOnClickListener {
-                val intent = Intent(this, MainActivity::class.java)
-                startActivity(intent)
-            }
+            val intent = Intent(this, SignUp::class.java)
+            startActivity(intent)
+        }
+        bindingLogin.backLogin.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
 
     }
 }

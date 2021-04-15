@@ -15,26 +15,26 @@ class LoginRepository {
 
         var loginTableModel: LiveData<LoginTableModel>? = null
 
-        fun initializeDB(context: Context) : LoginDatabase {
+        fun initializeDB(context: Context): LoginDatabase {
             return LoginDatabase.getDataseClient(context)
         }
 
-        fun insertData(context: Context, email: String, password: String,fullname :String) {
+        fun insertData(context: Context, email: String, password: String, fullname: String) {
 
             loginDatabase = initializeDB(context)
 
             CoroutineScope(Dispatchers.IO).launch {
-                val loginDetails = LoginTableModel(email, password,fullname)
+                val loginDetails = LoginTableModel(email, password, fullname)
                 loginDatabase!!.loginDao().InsertData(loginDetails)
             }
 
         }
 
-        fun getLoginDetails(context: Context, email: String, password: String) : LiveData<LoginTableModel>? {
+        fun getLoginDetails(context: Context, email: String, password: String): LiveData<LoginTableModel>? {
 
             loginDatabase = initializeDB(context)
 
-            loginTableModel = loginDatabase!!.loginDao().getLoginDetails(email,password)
+            loginTableModel = loginDatabase!!.loginDao().getLoginDetails(email, password)
 
             return loginTableModel
         }

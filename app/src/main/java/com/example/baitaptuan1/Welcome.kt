@@ -10,19 +10,19 @@ class Welcome : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_welcome)
-        val tvSigninWelcome=findViewById<TextView>(R.id.tvSigninWelcome)
-        val imgStartEmailPhone=findViewById<ImageView>(R.id.imgStartEmailPhone)
-        val tvStartEmailPhone=findViewById<TextView>(R.id.tvStartEmailPhone)
+        val tvSigninWelcome = findViewById<TextView>(R.id.tvSigninWelcome)
+        val imgStartEmailPhone = findViewById<ImageView>(R.id.imgStartEmailPhone)
+        val tvStartEmailPhone = findViewById<TextView>(R.id.tvStartEmailPhone)
 
-        tvSigninWelcome.setOnClickListener{
+        tvSigninWelcome.setOnClickListener {
             val intent = Intent(this, Login::class.java)
             startActivity(intent)
         }
-        imgStartEmailPhone.setOnClickListener{
+        imgStartEmailPhone.setOnClickListener {
             val intent = Intent(this, SignUp::class.java)
             startActivity(intent)
         }
-        tvStartEmailPhone.setOnClickListener{
+        tvStartEmailPhone.setOnClickListener {
             val intent = Intent(this, SignUp::class.java)
             startActivity(intent)
         }
