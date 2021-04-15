@@ -33,10 +33,10 @@ class Profile : Login() {
             val passwordOrgi=bundle.getString("passWord","unknow")
 
             if(viewModel.account.email.equals("default")){
-            viewModel.account.fullName=fullNameOrgi
-            viewModel.account.email=emailOrgi
-            viewModel.account.password=passwordOrgi
-}
+                viewModel.account.fullName=fullNameOrgi
+                viewModel.account.email=emailOrgi
+                viewModel.account.password=passwordOrgi
+            }
 
 
 //            txtName.setText( viewModel.account.fullName)
@@ -50,7 +50,7 @@ class Profile : Login() {
 
             loginViewModel.getLoginDetails(context,emailOrgi,passwordOrgi)!!.observe(this, Observer {
 
-           //    binding.account= Account(it.Email,it.FullName,it.Password,"")
+                //    binding.account= Account(it.Email,it.FullName,it.Password,"")
 
 
             })
@@ -60,8 +60,8 @@ class Profile : Login() {
                 val mDialogView = LayoutInflater.from(this).inflate(R.layout.customdialog, null)
                 //AlertDialogBuilder
                 val mBuilder = AlertDialog.Builder(this)
-                    .setView(mDialogView)
-                    .setTitle("Edit Profile")
+                        .setView(mDialogView)
+                        .setTitle("Edit Profile")
                 //show dialog
                 val  mAlertDialog = mBuilder.show()
                 //login button click of custom layout
@@ -74,20 +74,22 @@ class Profile : Login() {
                     val numberPhone = mDialogView.dialogPasswEt.text.toString()
 //------------------------------
                     loginViewModel.getLoginDetails(context,emailOrgi,passwordOrgi)!!.observe(this, Observer {
-                       it.Email=email
-                       it.FullName=name
+                        it.Email=email
+                        it.FullName=name
 
 
                         viewModel.account.fullName=name
                         viewModel.account.email=email
                         viewModel.account.password=passwordOrgi
-                        viewModel.account.numberPhone=numberPhone
+
                         binding.invalidateAll()
                         binding.account=viewModel.account
                     })
 
-
+                    //------------------------------ yunjedi
+                    loginViewModel.insertData(context,email,passwordOrgi,name)
                 }
+
                 //cancel button click of custom layout
                 mDialogView.dialogCancelBtn.setOnClickListener {
                     //dismiss dialog
@@ -103,7 +105,7 @@ class Profile : Login() {
 
 
 
-  //      if (it == null) {
+        //      if (it == null) {
 //                    tvcontentfullname.text = "Data Not Found"
 //                    tvcontentemail.text = "- - -"
 //                    tvContentPhoneNumber.text = "- - -"
