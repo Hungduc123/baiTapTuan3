@@ -6,13 +6,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.Observer
-import com.example.baitaptuan1.R
 import android.widget.Toast
 
 import com.example.baitaptuan1.databinding.ActivitySignUpBinding
 import kotlinx.android.synthetic.main.activity_sign_up.*
-import com.example.baitaptuan1.LoginViewModel
 
 class SignUp : AppCompatActivity() {
     private lateinit var bindingSignUp: ActivitySignUpBinding

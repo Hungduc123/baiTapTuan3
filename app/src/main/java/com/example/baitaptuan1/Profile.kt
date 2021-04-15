@@ -36,24 +36,17 @@ class Profile : Login() {
             viewModel.account.fullName=fullNameOrgi
             viewModel.account.email=emailOrgi
             viewModel.account.password=passwordOrgi
+            viewModel.account.numberPhone="enter your number phone"
+
 }
 
 
-//            txtName.setText( viewModel.account.fullName)
-//            tvcontentfullname.setText( viewModel.account.fullName)
-//            tvcontentemail.setText( viewModel.account.email)
-//            tvContentPhoneNumber.setText("")
 
             binding.account= viewModel.account
 
 
 
-            loginViewModel.getLoginDetails(context,emailOrgi,passwordOrgi)!!.observe(this, Observer {
 
-           //    binding.account= Account(it.Email,it.FullName,it.Password,"")
-
-
-            })
             //button click to show dialog
             tveditprofile.setOnClickListener {
                 //Inflate the dialog with custom view
@@ -81,7 +74,7 @@ class Profile : Login() {
                         viewModel.account.fullName=name
                         viewModel.account.email=email
                         viewModel.account.password=passwordOrgi
-                    //    viewModel.account.numberPhone=numberPhone
+                        viewModel.account.numberPhone=numberPhone
                         binding.invalidateAll()
                         binding.account=viewModel.account
                     })
@@ -97,23 +90,6 @@ class Profile : Login() {
         }
 
 
-
-
-
-
-
-
-  //      if (it == null) {
-//                    tvcontentfullname.text = "Data Not Found"
-//                    tvcontentemail.text = "- - -"
-//                    tvContentPhoneNumber.text = "- - -"
-//                }
-//                else {
-//                    tvcontentfullname.text = it.FullName
-//                    tvcontentemail.text = it.Email
-//
-//                    tvContentPhoneNumber.text = "Data Found Successfully"
-//                }
 
         backProfile.setOnClickListener{
 
